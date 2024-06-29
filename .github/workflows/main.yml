@@ -24,58 +24,14 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Build Binary
-        run: pyinstaller main.spec
+        run: pyinstaller rename.py
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: BHYG-Windows
+          name: rename-Windows
           path: dist
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: dist/BHYG-Windows.exe
-
-
-  macos-x64:
-    runs-on: macos-13
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-      - name: Install Dependencies
-        run: pip install -r requirements.txt
-      - name: Build Binary
-        run: pyinstaller main.spec
-      - name: Upload wheels
-        uses: actions/upload-artifact@v4
-        with:
-          name: BHYG-macOS-Intel
-          path: dist
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: dist/BHYG-macOS-Intel
-  macos-arm64:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-      - name: Install Dependencies
-        run: pip install -r requirements.txt
-      - name: Build Binary
-        run: pyinstaller main.spec
-      - name: Upload wheels
-        uses: actions/upload-artifact@v4
-        with:
-          name: BHYG-macOS-Apple_Silicon
-          path: dist
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: dist/BHYG-macOS-Apple_Silicon
+          files: dist/rename-Windows.exe
