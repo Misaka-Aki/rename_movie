@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Build Binary
-        run: pyinstaller rename.py
+        run: pyinstaller -F rename.py
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
